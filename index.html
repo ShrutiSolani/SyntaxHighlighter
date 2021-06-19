@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Highlighter</title>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+    <script>
+        function highlight(){
+            var ucode = document.getElementById('usercode').value;
+            console.log(ucode);
+            var language = document.getElementById('userlanguage').value;
+            console.log(language);
+            var x = "language-"+language;
+            console.log(x);
+            document.getElementsByTagName('code')[0].innerHTML = ucode;
+            document.getElementsByTagName('code')[0].className = x;
+            hljs.highlightAll();
+        }
+    </script>
+</head>
+<body>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <!-- <pre><code class="language-html">
+        &lt;h1&gt;Syntax Highlighter&lt;/h1&gt;
+        &lt;h2&gt;Highlight your code and make it easier to read&lt;/h2&gt;
+    </code></pre>
+    <pre><code class="language-python">
+        for i in range(5):
+            print(i)
+    </code></pre> -->
+    <h1>Paste your code to highlight</h1>
+    <textarea name="usercode" id="usercode" cols="100" rows="10"></textarea>
+    <button onclick="highlight();">Highlight</button>
+    <select name="" id="userlanguage">
+        <option value="html">HTML</option>
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+        <option value="javascript">JavaScript</option>
+        <option value="c">C</option>
+        <option value="c++">C++</option>
+    </select>
+    <div>
+        <pre><code>
+
+        </code></pre>
+    </div>
+
+
+    <!-- <script>hljs.highlightAll();</script> -->
+</body>
+</html>
