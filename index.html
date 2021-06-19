@@ -13,10 +13,22 @@
             console.log(ucode);
             var language = document.getElementById('userlanguage').value;
             console.log(language);
-            var x = "language-"+language;
-            console.log(x);
-            document.getElementsByTagName('code')[0].innerHTML = ucode;
-            document.getElementsByTagName('code')[0].className = x;
+            var str = "language-"+language;
+            console.log(str);
+            document.getElementsByTagName('code')[0].className = str;
+            if(language == "html"){
+                var x = ucode.replaceAll(/</ig, "&lt;");
+
+                var y = x.replace(/>/ig, "&gt;");
+                document.getElementsByTagName('code')[0].innerHTML = y;
+                // var x = ucode.match(/</);
+                console.log(x);
+                console.log(y);
+            }
+            else{
+                document.getElementsByTagName('code')[0].innerHTML = ucode;
+            }
+            
             hljs.highlightAll();
         }
     </script>
