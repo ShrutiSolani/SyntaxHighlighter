@@ -15,34 +15,35 @@
             console.log(language);
             var str = "language-"+language;
             console.log(str);
-            document.getElementsByTagName('code')[0].className = str;
-            if(language == "html"){
+            document.getElementById('hcode').className = str;
+            if(language == "html" || language == "c" || language == "c++"){
                 var x = ucode.replaceAll(/</ig, "&lt;");
-
                 var y = x.replace(/>/ig, "&gt;");
-                document.getElementsByTagName('code')[0].innerHTML = y;
-                // var x = ucode.match(/</);
-                console.log(x);
-                console.log(y);
+                document.getElementById('hcode').innerHTML = y;
+            
+                // console.log(x);
+                // console.log(y);
             }
             else{
-                document.getElementsByTagName('code')[0].innerHTML = ucode;
+                document.getElementById('hcode').innerHTML = ucode;
             }
             
             hljs.highlightAll();
         }
+
+        function copy() {
+            const copyText = document.getElementById('hcode');
+            console.log(copyText);
+            copyText.focus();
+            copyText.select;
+            document.execCommand("copy");
+        }
+
     </script>
 </head>
 <body>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
-    <!-- <pre><code class="language-html">
-        &lt;h1&gt;Syntax Highlighter&lt;/h1&gt;
-        &lt;h2&gt;Highlight your code and make it easier to read&lt;/h2&gt;
-    </code></pre>
-    <pre><code class="language-python">
-        for i in range(5):
-            print(i)
-    </code></pre> -->
+    
     <h1>Paste your code to highlight</h1>
     <textarea name="usercode" id="usercode" cols="100" rows="10"></textarea>
     <button onclick="highlight();">Highlight</button>
@@ -55,12 +56,13 @@
         <option value="c++">C++</option>
     </select>
     <div>
-        <pre><code>
+        <pre><code id="hcode">
 
         </code></pre>
     </div>
+    <!-- <input id="input" type="text"/> -->
+    <button id="copy" onclick="copy();">Copy</button>
 
 
-    <!-- <script>hljs.highlightAll();</script> -->
 </body>
 </html>
