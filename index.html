@@ -8,164 +8,47 @@
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
       <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
-      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.0/styles/default.min.css"> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.0/highlight.min.js"></script>
-      <!-- and it's easy to individually load additional languages -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.0/languages/go.min.js"></script>
-      <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/vs2015.min.css"> -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-    <script>
-        function highlight(){
-            var ucode = document.getElementById('usercode').value;
-            console.log(ucode);
-            var language = document.getElementById('userlanguage').value;
-            console.log(language);
-            var str = "language-"+language;
-            console.log(str);
-            document.getElementById('hcode').className = str;
-        
-                var x = ucode.replaceAll(/</ig, "&lt;");
-                var y = x.replace(/>/ig, "&gt;");
-                document.getElementById('hcode').innerHTML = y;
-           
-            var utheme = document.getElementById('usertheme').value;
-            var link = document.createElement('link'); 
-  
-            link.rel = 'stylesheet';
-            link.href = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.0/styles/" + utheme + ".min.css"; 
+      
 
-  // Get HTML head element to append 
-  // link element to it 
-  document.getElementsByTagName('HEAD')[0].appendChild(link); 
-            // <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.0/styles/" + utheme + ".min.css">
-            hljs.highlightAll();
-        }
-    </script>
 </head>
 <body>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
-    
-    <h1>Paste your code to highlight</h1>
-    <textarea name="usercode" id="usercode" cols="100" rows="10"></textarea>
-    <button onclick="highlight();">Highlight</button>
-    <select id="userlanguage">
-    
-    </select>
-    
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script> -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <i class="bi bi-code-slash" style="color:#CF7500"></i>
+            Syntax Highlighter
+          </a>
+        </div>
+      </nav>
+<BR></BR>
+      <p><strong>Paste your code to <mark style="background-color: #CAE4DB;">highlight</mark></strong></p><br>
+    <div class="input-group">
+        <span class="input-group-text">Code</span>
+        <textarea class="form-control" name="usercode" id="usercode" aria-label="Code" rows="15"></textarea>
+      </div>
+ 
+      <select class="form-select" aria-label="Default select example" id="userlanguage">
+       
+      </select><br><br>
 
-    <select id="usertheme">
-
-    </select>
-        <pre><code id="hcode">
-
-        </code></pre>
-    
-    <!-- <input id="input" type="text"/> -->
-    <button class="btn" id="copyButton" data-clipboard-target="#hcode">Copy</button>
-
-    <script>
-                window.onload=function(){
-            var clipboard = new ClipboardJS('.btn');
-        }
-
-
-            
-     
-        supported_languages = ["Bash",
-"C",
-"C#",
-"C++",
-"CSS",
-"Diff",
-"Go",
-"HTML",
-"JSON",
-"Java",
-"JavaScript",
-"Kotlin",
-"Less",
-"Lua",
-"Makefile",
-"Markdown",
-"Objective-C",
-"PHP",
-"PHP Template",
-"Perl",
-"Plain text",
-"Python",
-"Python REPL",
-"R",
-"Ruby",
-"Rust",
-"SCSS",
-"SQL",
-"Shell Session",
-"Swift",
-
-"TypeScript",
-"Visual Basic .NET",
-"YAML",
-"XML"
-];
-
-       aliases = ["bash",
-"c",
-"csharp",
-"cpp",
-"css",
-"diff",
-"go",
-"html",
-"json",
-"java",
-"javascript",
-"kotlin",
-"less",
-"lua",
-"makefile",
-"markdown",
-"objectivec",
-"php",
-
-"perl",
-"plaintext",
-"python",
-"python-repl",
-"r",
-"ruby",
-"rust",
-"scss",
-"sql",
-"shell",
-"swift",
-
-"typescript",
-"vbnet",
-"yml",
-"xml"
-]
+      <select class="form-select" aria-label="Default select example" id="usertheme">
+      
+      </select><br><br>
         
-        var select = document.getElementById("userlanguage"); 
-        for(var i = 0; i < supported_languages.length; i++) {
-            var el = document.createElement("option");
-            el.textContent = supported_languages[i];
-            el.value = aliases[i];
-            select.appendChild(el);
-        }
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="button" onclick="highlight();">Highlight</button><br>
+            <div id="highlighted"><pre><code id="hcode">
 
-        themes = [
-            "default",
-            "vs2015"
-        ]
-
-        var select = document.getElementById("usertheme"); 
-        for(var i = 0; i < themes.length; i++) {
-            var el = document.createElement("option");
-            el.textContent = themes[i];
-            el.value = themes[i];
-            select.appendChild(el);
-        }
-    </script>
+            </code></pre></div>
+            <button class="btn btn-primary" type="button" id="copyButton" data-clipboard-target="#hcode">Copy</button>
+          </div>
+    <script src="index.js"></script>
 
 </body>
 </html>
